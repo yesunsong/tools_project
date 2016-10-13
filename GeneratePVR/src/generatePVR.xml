@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="generate PVR" default="single" basedir=".">
+
+	<property name="TexturePacker_Path" value="" />
+	<property name="folder_path" value="" />
+	<property name="directory_path" value="" />
+	<property name="foldername" value="" />
+	<property name="foldername" value="" />
+
+	
+	<target name="single">
+		<!--生成pvr.ccz文件 -->
+		<exec executable="${TexturePacker_Path}">
+			<arg
+				line="			  
+			--format cocos2d 
+			--data ${folder_path}/${foldername}.plist
+			--texture-format pvr2ccz
+			--sheet ${folder_path}/${foldername}.pvr.ccz
+			--opt RGBA4444
+			--dither-fs-alpha
+			
+			--size-constraints AnySize
+			--algorithm Basic
+			--border-padding 0
+			--shape-padding 0			
+			--trim-mode None						
+								
+			--disable-rotation
+			${folder_path}/${foldername}.png
+			" />
+		</exec>
+	</target>
+
+	<target name="directory">
+		<!--生成pvr.ccz文件 -->
+		<echo > --- directory --- </echo>
+	</target>
+
+</project>

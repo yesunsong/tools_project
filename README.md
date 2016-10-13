@@ -16,3 +16,9 @@ Usage:
 GenerateCCS
 Intro:产生CocosStudio的CCS工程文件
 Usage:
+
+GeneratePVR
+
+Intro:批量将png转pvr.ccz
+
+Usage:
