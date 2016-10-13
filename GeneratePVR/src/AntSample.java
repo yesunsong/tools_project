@@ -15,7 +15,7 @@ public class AntSample {
 	private static String semicolon = ";";
 	private static String single_target = "single";
 	private static String directory_target = "directory";
-	// ÒªÖğ½¥ÒÆ³ı °üº¬/ÅÅ³ıÄ¿Â¼ºÍ°üº¬/ÅÅ³ıÎÄ¼ş
+	// è¦é€æ¸ç§»é™¤ åŒ…å«/æ’é™¤ç›®å½•å’ŒåŒ…å«/æ’é™¤æ–‡ä»¶
 	private static String[] ExculdedDirs;
 	private static String[] ExculdedFiles;
 	private static String[] InculdedDirs;
@@ -57,10 +57,10 @@ public class AntSample {
 		//
 		File buildFile = new File(".//src//generatePVR.xml");
 
-		// ´´½¨Ò»¸öANTÏîÄ¿
+		// åˆ›å»ºä¸€ä¸ªANTé¡¹ç›®
 		p = new Project();
 
-		// ´´½¨Ò»¸öÄ¬ÈÏµÄ¼àÌıÆ÷,¼àÌıÏîÄ¿¹¹½¨¹ı³ÌÖĞµÄÈÕÖ¾²Ù×÷
+		// åˆ›å»ºä¸€ä¸ªé»˜è®¤çš„ç›‘å¬å™¨,ç›‘å¬é¡¹ç›®æ„å»ºè¿‡ç¨‹ä¸­çš„æ—¥å¿—æ“ä½œ
 		DefaultLogger consoleLogger = new DefaultLogger();
 		consoleLogger.setErrorPrintStream(System.err);
 		consoleLogger.setOutputPrintStream(System.out);
@@ -69,12 +69,12 @@ public class AntSample {
 
 		try {
 			p.fireBuildStarted();
-			// ³õÊ¼»¯¸ÃÏîÄ¿
+			// åˆå§‹åŒ–è¯¥é¡¹ç›®
 			p.init();
 			ProjectHelper helper = ProjectHelper.getProjectHelper();
-			// ½âÎöÏîÄ¿µÄ¹¹½¨ÎÄ¼ş
+			// è§£æé¡¹ç›®çš„æ„å»ºæ–‡ä»¶
 			helper.parse(p, buildFile);
-			// Ö´ĞĞÏîÄ¿µÄÄ³Ò»¸öÄ¿±ê
+			// æ‰§è¡Œé¡¹ç›®çš„æŸä¸€ä¸ªç›®æ ‡
 			executeAnt(p);
 			p.fireBuildFinished(null);
 		} catch (BuildException be) {
@@ -83,7 +83,7 @@ public class AntSample {
 	}
 
 	private static void executeAnt(Project p) {
-		System.out.println("Ä¬ÈÏTarget£º" + p.getDefaultTarget());
+		System.out.println("é»˜è®¤Targetï¼š" + p.getDefaultTarget());
 
 		p.setUserProperty("TexturePacker_Path", TexturePacker_Path);
 		p.setUserProperty("folder_path", Resources_Path);
@@ -111,7 +111,7 @@ public class AntSample {
 			relativePath = dir.getPath().substring(index + Resources_Path.length() + 1, dir.getPath().length());
 		}
 
-		// ĞèÒª¼ì²é¸ÃÄ¿Â¼ÊÇ·ñÔÚÅÅ³ıÄ¿Â¼Àï
+		// éœ€è¦æ£€æŸ¥è¯¥ç›®å½•æ˜¯å¦åœ¨æ’é™¤ç›®å½•é‡Œ
 		boolean isIn = false;
 		for (int i = 0; i < ExculdedDirs.length; i++) {
 			if (ExculdedDirs[i].equals(relativePath)) {
@@ -124,7 +124,7 @@ public class AntSample {
 			return;
 		}
 
-		// ¸ÃÄ¿Â¼ÀïÊÇ·ñ°üº¬ÅÅ³ıÎÄ¼ş£¬Èç¹ûÃ»ÓĞµÄ»°£¬¾Í´ò°üÄ¿Â¼£¬·ñÔò¾ÍÊÇµ¥ÎÄ¼ş´ò°ü
+		// è¯¥ç›®å½•é‡Œæ˜¯å¦åŒ…å«æ’é™¤æ–‡ä»¶ï¼Œå¦‚æœæ²¡æœ‰çš„è¯ï¼Œå°±æ‰“åŒ…ç›®å½•ï¼Œå¦åˆ™å°±æ˜¯å•æ–‡ä»¶æ‰“åŒ…
 		File[] files = dir.listFiles(new FileFilter() {
 
 			@Override
@@ -139,7 +139,7 @@ public class AntSample {
 			}
 		});
 
-		// ¼ÌĞø¼ì²é¡¢´ò°üÄ¿Â¼¡¢´ò°üµ¥ÎÄ¼ş
+		// ç»§ç»­æ£€æŸ¥ã€æ‰“åŒ…ç›®å½•ã€æ‰“åŒ…å•æ–‡ä»¶
 		boolean hasDirectory = false;
 		for (int i = 0; i < files.length; i++) {
 			if (files[i].isDirectory()) {
@@ -148,8 +148,8 @@ public class AntSample {
 			}
 		}
 
-		if (!hasDirectory) {// ²»´æÔÚ×ÓÄ¿Â¼£¬´ò°üÄ¿Â¼
-			if (files.length == dir.listFiles().length) {// ´ò°üÄ¿Â¼
+		if (!hasDirectory) {// ä¸å­˜åœ¨å­ç›®å½•ï¼Œæ‰“åŒ…ç›®å½•
+			if (files.length == dir.listFiles().length) {// æ‰“åŒ…ç›®å½•
 				directory_target(p, dir.getAbsolutePath());
 				return;
 			}
@@ -157,9 +157,9 @@ public class AntSample {
 
 		for (int i = 0; i < files.length; i++) {
 			File file = files[i];
-			if (file.isDirectory()) {// ¼ÌĞø¼ì²éÄ¿Â¼
+			if (file.isDirectory()) {// ç»§ç»­æ£€æŸ¥ç›®å½•
 				checkDirectory(file);
-			} else {// ´ò°üÄ¿Â¼»òÎÄ¼ş
+			} else {// æ‰“åŒ…ç›®å½•æˆ–æ–‡ä»¶
 				if (!file.getName().endsWith(".png")) {
 					continue;
 				}
@@ -180,11 +180,11 @@ public class AntSample {
 			}
 		}
 
-		// ÎÄ¼şÊÇ·ñÔÚ°üº¬ÎÄ¼şÀï
+		// æ–‡ä»¶æ˜¯å¦åœ¨åŒ…å«æ–‡ä»¶é‡Œ
 		single_target(p, file.getParentFile().getAbsolutePath(), file.getName().substring(0, file.getName().indexOf(".")));
 	}
 
-	// µ¥¸öÎÄ¼ş´ò°ü
+	// å•ä¸ªæ–‡ä»¶æ‰“åŒ…
 	private static void single_target(Project p, String folderPath, String foldername) {
 		System.out.println("single:" + folderPath + "/" + foldername);
 
@@ -193,11 +193,11 @@ public class AntSample {
 		p.executeTarget(single_target);
 	}
 
-	// Ä¿Â¼´ò°ü
+	// ç›®å½•æ‰“åŒ…
 	private static void directory_target(Project p, String dirPath) {
 		System.out.println("directory:" + dirPath);
 
-		// Ä¿Â¼ÊÇ·ñÊÇ °üº¬Ä¿Â¼£¬²»ÊÇµÄ»°£¬ÊÇ·ñÓĞ °üº¬ÎÄ¼ş
+		// ç›®å½•æ˜¯å¦æ˜¯ åŒ…å«ç›®å½•ï¼Œä¸æ˜¯çš„è¯ï¼Œæ˜¯å¦æœ‰ åŒ…å«æ–‡ä»¶
 		p.setUserProperty("directory_path", dirPath);
 		p.executeTarget(directory_target);
 	}
