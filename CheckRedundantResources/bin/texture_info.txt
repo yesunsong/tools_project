@@ -1,0 +1,28 @@
+﻿texture_info:
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/register.png" rc=4 id=22 67 x 18 @ 32 bpp => 4 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/weixing.png" rc=73 id=21 57 x 47 @ 32 bpp => 10 KB
+"/cc_2x2_white_image" rc=11 id=13 2 x 2 @ 32 bpp => 0 KB
+"/cc_fps_images" rc=4 id=2 999 x 54 @ 16 bpp => 105 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/editBg.png" rc=28 id=8 267 x 43 @ 32 bpp => 44 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/logo.png" rc=2 id=3 800 x 480 @ 32 bpp => 1500 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/loginBg.png" rc=2 id=1 1136 x 640 @ 32 bpp => 2840 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/girl.png" rc=4 id=4 534 x 626 @ 32 bpp => 1305 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/logo.png" rc=4 id=5 364 x 196 @ 32 bpp => 278 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/loginBoxBg.png" rc=4 id=7 519 x 610 @ 32 bpp => 1236 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/hand.png" rc=4 id=6 68 x 91 @ 32 bpp => 24 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/click.png" rc=3 id=18 43 x 35 @ 32 bpp => 5 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/check.png" rc=4 id=17 33 x 33 @ 32 bpp => 4 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/findBtn.png" rc=73 id=55 172 x 69 @ 32 bpp => 46 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/loginBtn.png" rc=73 id=19 172 x 69 @ 32 bpp => 46 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/findPwBoxBg.png" rc=4 id=44 519 x 610 @ 32 bpp => 1236 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/qq.png" rc=73 id=20 45 x 46 @ 32 bpp => 8 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/missPassword.png" rc=4 id=23 67 x 19 @ 32 bpp => 4 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/xiangxiaanniu.png" rc=73 id=24 41 x 38 @ 32 bpp => 6 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/exitBtn.png" rc=73 id=25 82 x 46 @ 32 bpp => 14 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/registerBoxBg.png" rc=4 id=27 519 x 610 @ 32 bpp => 1236 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/circle.png" rc=7 id=28 32 x 32 @ 32 bpp => 4 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/circle2.png" rc=5 id=29 40 x 40 @ 32 bpp => 6 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/registerBtn.png" rc=73 id=42 172 x 69 @ 32 bpp => 46 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/backBtn.png" rc=145 id=43 82 x 46 @ 32 bpp => 14 KB
+"F:/mobileClient/code/game/MixProject/proj.win32/Debug.win32/platform/loginUI/sendCode.png" rc=73 id=54 98 x 21 @ 32 bpp => 8 KB
+TextureCache dumpDebugInfo: 26 textures, for 10040 KB (9.80 MB)
