@@ -31,5 +31,6 @@
 	<classpathentry kind="lib" path="libAnt/ant-swing.jar"/>
 	<classpathentry kind="lib" path="libAnt/ant-testutil.jar"/>
 	<classpathentry kind="lib" path="libAnt/ant.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/LibJava"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

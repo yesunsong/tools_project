@@ -2,26 +2,57 @@ import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DefaultLogger;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.ProjectHelper;
+import org.apache.tools.ant.taskdefs.condition.Os;
+
+import cn.xm.yss.StringUtils;
 
 public class AntSample {
+	private static final String RGBA8888 = "RGBA8888";
+	private static final String RGBA4444 = "RGBA4444";
+
 	private static String Resources_Path = "";
 	private static String TexturePacker_Path = "";
-	private static String semicolon = ";";
 	private static String single_target = "single";
 	private static String directory_target = "directory";
 	// 要逐渐移除 包含/排除目录和包含/排除文件
-	private static String[] ExculdedDirs;
-	private static String[] ExculdedFiles;
-	private static String[] InculdedDirs;
-	private static String[] InculdedFiles;
+	private static ArrayList<String> ExcludedDirs;
+	private static ArrayList<String> ExcludedFiles;
+	private static ArrayList<String> IncludedDirs;
+	private static ArrayList<String> IncludedFiles;
 
 	private static Project p;
+
+	/**
+	 * 不具有通用性
+	 * 
+	 * @param object
+	 * @param key1
+	 * @param key2
+	 * @return
+	 */
+	private static ArrayList<String> JSONArray2JavaArray(JSONObject object, String key1, String key2) {
+		ArrayList<String> list = new ArrayList<String>();
+
+		JSONArray tmp = object.getJSONArray(key1);
+		if (!tmp.isEmpty()) {
+			String value = "";
+			JSONObject obj;
+			for (int i = 0; i < tmp.size(); i++) {
+				obj = (JSONObject) tmp.get(i);
+				value = (String) obj.get(key2);
+				list.add(value);
+				System.out.println(value);
+			}
+		}
+		return list;
+	}
 
 	public static void main(String[] args) {
 		String JsonContext = new Util().ReadFile("./src/config.json");
@@ -29,19 +60,25 @@ public class AntSample {
 		Resources_Path = (String) jsonObject.get("Resources_Path");
 		Resources_Path = Resources_Path.replace("/", "\\");
 		TexturePacker_Path = (String) jsonObject.get("TexturePacker_Path");
-		ExculdedDirs = ((String) jsonObject.get("ExculdedDir")).split(semicolon);
-		ExculdedFiles = ((String) jsonObject.get("ExculdedFile")).split(semicolon);
-		InculdedDirs = ((String) jsonObject.get("InculdedDir")).split(semicolon);
-		InculdedFiles = ((String) jsonObject.get("InculdedFile")).split(semicolon);
 
-		ArrayList<String> array = new ArrayList<String>();
+		ExcludedDirs = JSONArray2JavaArray(jsonObject, "ExculdedDir", "dir");
+		ExcludedFiles = JSONArray2JavaArray(jsonObject, "ExculdedFile", "file");
+		IncludedDirs = JSONArray2JavaArray(jsonObject, "InculdedDir", "dir");
+		IncludedFiles = JSONArray2JavaArray(jsonObject, "InculdedFile", "file");
+
+		if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+			StringUtils.getInstance().replace(ExcludedDirs, '/', '\\');
+			StringUtils.getInstance().replace(ExcludedFiles, '/', '\\');
+			StringUtils.getInstance().replace(IncludedDirs, '/', '\\');
+			StringUtils.getInstance().replace(IncludedFiles, '/', '\\');
+		}
 
 		System.out.println("Resources Path    :" + Resources_Path);
 		System.out.println("TexturePacker Path:" + TexturePacker_Path);
-		System.out.println("Exculded Dir      :" + ExculdedDirs);
-		System.out.println("Exculded File     :" + ExculdedFiles);
-		System.out.println("Inculded Dir      :" + InculdedDirs);
-		System.out.println("Inculded File	  :" + InculdedFiles);
+		System.out.println("Exculded Dir      :" + ExcludedDirs.toString());
+		System.out.println("Exculded File     :" + ExcludedFiles.toString());
+		System.out.println("Inculded Dir      :" + IncludedDirs.toString());
+		System.out.println("Inculded File	  :" + IncludedFiles.toString());
 		// }
 		File file = new File(Resources_Path);
 		File[] files = file.listFiles(new FileFilter() {
@@ -113,9 +150,10 @@ public class AntSample {
 
 		// 需要检查该目录是否在排除目录里
 		boolean isIn = false;
-		for (int i = 0; i < ExculdedDirs.length; i++) {
-			if (ExculdedDirs[i].equals(relativePath)) {
+		for (String string : ExcludedDirs) {
+			if (string.equals(relativePath)) {
 				isIn = true;
+				ExcludedDirs.remove(string);
 				break;
 			}
 		}
@@ -131,9 +169,13 @@ public class AntSample {
 			public boolean accept(File pathname) {
 				// System.out.println(pathname.getPath());
 				String tmp = pathname.getName();
-				for (int i = 0; i < ExculdedFiles.length; i++) {
-					String tmp0 = ExculdedFiles[i];
-					return !tmp.equals(tmp0);
+
+				for (String string : ExcludedFiles) {
+					boolean isEqual = tmp.equals(string);
+					if (isEqual) {
+						ExcludedFiles.remove(string);
+					}
+					return !isEqual;
 				}
 				return true;
 			}
@@ -173,9 +215,9 @@ public class AntSample {
 			return;
 		}
 		String relativePath = file.getPath().substring(file.getPath().indexOf(Resources_Path) + 1, file.getPath().length());
-		for (int i = 0; i < ExculdedFiles.length; i++) {
-			String file2 = ExculdedFiles[i];
-			if (relativePath.equals(file2)) {
+
+		for (String string : ExcludedFiles) {
+			if (relativePath.equals(string)) {
 				break;
 			}
 		}
@@ -186,16 +228,47 @@ public class AntSample {
 
 	// 单个文件打包
 	private static void single_target(Project p, String folderPath, String foldername) {
-		System.out.println("single:" + folderPath + "/" + foldername);
+		System.out.println("single:" + folderPath + "\\" + foldername);
+
+		boolean isIn = false;
+		String relativePath = (foldername + ".png");
+
+		for (String string : IncludedFiles) {
+			if (relativePath.equals(string)) {
+				isIn = true;
+				IncludedFiles.remove(string);
+				p.setUserProperty("PixelFormat", RGBA8888);
+				break;
+			}
+		}
+
+		if (!isIn) {
+			p.setUserProperty("PixelFormat", RGBA4444);
+		}
 
 		p.setUserProperty("folder_path", folderPath);
-		p.setUserProperty("foldername", foldername);
+		p.setUserProperty("filename", foldername);
 		p.executeTarget(single_target);
 	}
 
 	// 目录打包
 	private static void directory_target(Project p, String dirPath) {
 		System.out.println("directory:" + dirPath);
+		String relativePath = dirPath.substring(dirPath.indexOf(Resources_Path) + Resources_Path.length() + 1, dirPath.length());
+
+		boolean isIn = false;
+		for (String string : IncludedDirs) {
+			if (relativePath.equals(string)) {
+				isIn = true;
+				IncludedDirs.remove(string);
+				p.setUserProperty("PixelFormat", RGBA8888);
+				break;
+			}
+		}
+
+		if (!isIn) {
+			p.setUserProperty("PixelFormat", RGBA4444);
+		}
 
 		// 目录是否是 包含目录，不是的话，是否有 包含文件
 		p.setUserProperty("directory_path", dirPath);

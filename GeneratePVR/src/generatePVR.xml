@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="generate PVR" default="single" basedir=".">
+	<property name="ant-contrib.jar" location="${build.dir}/build/lib/ant-contrib-1.0b3.jar" />
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties"
+		classpath="${ant-contrib.jar}" />
 
 	<property name="TexturePacker_Path" value="" />
 	<property name="folder_path" value="" />
 	<property name="directory_path" value="" />
-	<property name="foldername" value="" />
-	<property name="foldername" value="" />
+	<property name="filename" value="" />
+	<!--像素格式 -->
+	<property name="PixelFormat" value="RGBA4444" />
 
-	
 	<target name="single">
 		<!--生成pvr.ccz文件 -->
 		<exec executable="${TexturePacker_Path}">
 			<arg
 				line="			  
 			--format cocos2d 
-			--data ${folder_path}/${foldername}.plist
+			--data ${folder_path}/${filename}.plist
 			--texture-format pvr2ccz
-			--sheet ${folder_path}/${foldername}.pvr.ccz
-			--opt RGBA4444
+			--sheet ${folder_path}/${filename}.pvr.ccz
+			--opt ${PixelFormat}
 			--dither-fs-alpha
 			
 			--size-constraints AnySize
@@ -27,14 +30,26 @@
 			--trim-mode None						
 								
 			--disable-rotation
-			${folder_path}/${foldername}.png
+			${folder_path}/${filename}.png
 			" />
 		</exec>
 	</target>
 
+	<taskdef name="Sample" classname="MyTask" classpath="MyTask.java" />
+
 	<target name="directory">
 		<!--生成pvr.ccz文件 -->
-		<echo > --- directory --- </echo>
+		<echo> --- directory --- </echo>
+		<!--<foreach list="1,2,3,4,5,6,7,8,9" target="screen_number" param="number" 
+			delimiter=","> </foreach> -->
+
+		<Sample dir="${directory_path}">
+			<fileset dir="${directory_path}" casesensitive="yes">
+				<!-- <include name="**/*Portlet.xml" /> -->
+				<exclude name="**/*.pvr.ccz" />
+				<exclude name="**/*.plist" />
+			</fileset>
+		</Sample>
 	</target>
 
 </project>
