@@ -1,0 +1,32 @@
+{
+    "Resources_Path": "F:/HuangGuan/mobileClient/code/game/MixProject/Resources",
+    "TexturePacker_Path": "D:/Program Files (x86)/CodeAndWeb/TexturePacker/bin/TexturePacker.exe",
+    "ExculdedDir": [
+        {
+            "dir": "common"
+        },
+        {
+            "dir": "Games"
+        },
+        {
+            "dir": "platform"
+        },
+        {
+            "dir": "common/animation/denglujiemian/girl"
+        },
+        {
+            "dir": "Games/goldenToad/particle"
+        }
+    ],
+    "ExculdedFile": [],
+    "InculdedDir": [
+        {
+            "dir": "test/girl"
+        }
+    ],
+    "InculdedFile": [
+        {
+            "file": "12100004.png"
+        }
+    ]
+}

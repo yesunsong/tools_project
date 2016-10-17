@@ -40,16 +40,13 @@
 	<target name="directory">
 		<!--生成pvr.ccz文件 -->
 		<echo> --- directory --- </echo>
-		<!--<foreach list="1,2,3,4,5,6,7,8,9" target="screen_number" param="number" 
-			delimiter=","> </foreach> -->
-
-		<Sample dir="${directory_path}">
-			<fileset dir="${directory_path}" casesensitive="yes">
-				<!-- <include name="**/*Portlet.xml" /> -->
-				<exclude name="**/*.pvr.ccz" />
-				<exclude name="**/*.plist" />
-			</fileset>
-		</Sample>
+<!-- 		<Sample dir="${directory_path}"> -->
+<!-- 			<fileset dir="${directory_path}" casesensitive="yes"> -->
+<!-- 				<include name="**/*Portlet.xml" /> -->
+<!-- 				<exclude name="**/*.pvr.ccz" /> -->
+<!-- 				<exclude name="**/*.plist" /> -->
+<!-- 			</fileset> -->
+<!-- 		</Sample> -->
 	</target>
 
 </project>
