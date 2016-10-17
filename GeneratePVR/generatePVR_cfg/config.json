@@ -3,30 +3,64 @@
     "TexturePacker_Path": "D:/Program Files (x86)/CodeAndWeb/TexturePacker/bin/TexturePacker.exe",
     "ExculdedDir": [
         {
-            "dir": "common"
+            "dir": "common/animation/denglujiemian/girl"
         },
         {
-            "dir": "Games"
+            "dir": "Games/goldenToad/particle"
         },
         {
-            "dir": "platform"
+            "dir": "Games/goldenToad/fishAnimation"
+        },
+        {
+            "dir": "Games/goldenToad/bullet"
+        },
+        {
+            "dir": "Games/goldenToad/Scene/haicao"
+        },
+        {
+            "dir": "platform/animation"
+        }
+    ],
+    "ExculdedFile": [
+        {
+            "file": "Games/ThirteenZhang/game/Gun.png"
+        },
+        {
+            "file": "Games/ThirteenZhang/game/Common.png"
+        },
+        {
+            "file": "Games/ThirteenZhang/game/Bullet.png"
+        },
+        {
+            "file": "Games/ThirteenZhang/game/card/cards.png"
+        },
+        {
+            "file": "Games/BJL/game/BJLStudio/Layergame/cards.png"
+        },
+        {
+            "file": "Games/goldenToad/Scene/cards.png"
+        },
+        {
+            "file": "Games/stud/poker/cards.png"
+        },
+        {
+            "file": "platform/notice/Speaker.png"
+        }
+    ],
+    "InculdedDir": [
+        {
+            "dir": "test/girl"
         },
         {
             "dir": "common/animation/denglujiemian/girl"
         },
         {
-            "dir": "Games/goldenToad/particle"
-        }
-    ],
-    "ExculdedFile": [],
-    "InculdedDir": [
-        {
-            "dir": "test/girl"
+            "dir": "common/animation/hundred_cow"
         }
     ],
     "InculdedFile": [
         {
-            "file": "12100004.png"
+            "file": "platform/topFrame.png"
         }
     ]
 }
