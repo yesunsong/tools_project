@@ -1,6 +1,10 @@
 {
-    "Resources_Path": "F:/HuangGuan/mobileClient/code/game/MixProject/Resources",
-    "TexturePacker_Path": "D:/Program Files (x86)/CodeAndWeb/TexturePacker/bin/TexturePacker.exe",
+    "Mac_Resources_Path": "",
+    "Mac_TexturePacker_Path": "",
+	
+	"Win_Resources_Path": "F:/HuangGuan/mobileClient/code/game/MixProject/Resources",
+    "Win_TexturePacker_Path": "D:/Program Files (x86)/CodeAndWeb/TexturePacker/bin/TexturePacker.exe",
+	
     "ExculdedDir": [
         {
             "dir": "common/animation/denglujiemian/girl"

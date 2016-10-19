@@ -24,7 +24,7 @@ public class MyTask extends Task {
 			DirectoryScanner ds = fs.getDirectoryScanner(getProject());
 			includedFiles = ds.getIncludedFiles();
 			System.out.println("++++++++++++");
-//			System.out.println(includedFiles.toString());
+			// System.out.println(includedFiles.toString());
 
 			for (int i = 0; i < includedFiles.length; i++) {
 				String tmp = includedFiles[i];

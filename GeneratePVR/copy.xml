@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="copy_config_file" default="copy" basedir=".">
+
+	<property name="source_dir" value="F:\Myself\tools_project\GeneratePVR\generatePVR_cfg"/>
+	<property name="target_dir" value="F:\HuangGuan\mobileClient\code\game\MixProject\tools\generatePVR_cfg"/>
+
+	<target name="copy">
+		<copy todir="${target_dir}">
+			<fileset dir ="${source_dir}" />
+		</copy>	
+	</target>
+
+</project>

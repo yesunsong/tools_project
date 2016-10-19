@@ -9,10 +9,11 @@
 	<property name="directory_path" value="" />
 	<property name="filename" value="" />
 	<!--像素格式 -->
-	<property name="PixelFormat" value="RGBA4444" />
+	<property name="PixelFormat" value="" />
+	<property name="DitherMode" value="" />
 
 	<target name="single">
-		<!--生成pvr.ccz文件 -->
+		<!--生成png对应的pvr.ccz文件 -->
 		<exec executable="${TexturePacker_Path}">
 			<arg
 				line="			  
@@ -21,7 +22,7 @@
 			--texture-format pvr2ccz
 			--sheet ${folder_path}/${filename}.pvr.ccz
 			--opt ${PixelFormat}
-			--dither-fs-alpha
+			--dither-${DitherMode}
 			
 			--size-constraints AnySize
 			--algorithm Basic
@@ -38,15 +39,16 @@
 	<taskdef name="Sample" classname="MyTask" classpath="MyTask.java" />
 
 	<target name="directory">
-		<!--生成pvr.ccz文件 -->
-		<echo> --- directory --- </echo>
-<!-- 		<Sample dir="${directory_path}"> -->
-<!-- 			<fileset dir="${directory_path}" casesensitive="yes"> -->
-<!-- 				<include name="**/*Portlet.xml" /> -->
-<!-- 				<exclude name="**/*.pvr.ccz" /> -->
-<!-- 				<exclude name="**/*.plist" /> -->
-<!-- 			</fileset> -->
-<!-- 		</Sample> -->
+		<!--生成目录下的pvr.ccz文件 -->
+		<Sample dir="${directory_path}">
+			<fileset dir="${directory_path}" casesensitive="yes">
+				<exclude name="**/*.pvr.ccz" />
+				<exclude name="**/*.plist" />
+				<exclude name="**/*.json" />
+				<exclude name="**/*.atlas" />
+				<exclude name="**/*.ExportJson" />
+			</fileset>
+		</Sample>
 	</target>
 
 </project>
