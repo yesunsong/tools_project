@@ -1,70 +1,99 @@
 {
-    "Mac_Resources_Path": "",
-    "Mac_TexturePacker_Path": "",
-	
-	"Win_Resources_Path": "F:/HuangGuan/mobileClient/code/game/MixProject/Resources",
-    "Win_TexturePacker_Path": "D:/Program Files (x86)/CodeAndWeb/TexturePacker/bin/TexturePacker.exe",
-	
-    "ExculdedDir": [
-        {
-            "dir": "common/animation/denglujiemian/girl"
-        },
-        {
-            "dir": "Games/goldenToad/particle"
-        },
-        {
-            "dir": "Games/goldenToad/fishAnimation"
-        },
-        {
-            "dir": "Games/goldenToad/bullet"
-        },
-        {
-            "dir": "Games/goldenToad/Scene/haicao"
-        },
-        {
-            "dir": "platform/animation"
-        }
-    ],
+    "Mac_Resources_Path": "/Users/sunsongye/Documents/HuangGuan/mobile/mobileClient/code/game/MixProject/Resources",
+    "Mac_TexturePacker_Path": "/Applications/TexturePacker.app/Contents/MacOS/TexturePacker",
+    "Win_Resources_Path": "F:/HuangGuan/mobileClient/code/game/MixProject/Resources",
+    "Win_TexturePacker_Path": "D:/Program Files/CodeAndWeb/TexturePacker/bin/TexturePacker.exe",
+    "ExculdedDir": [],
     "ExculdedFile": [
         {
-            "file": "Games/ThirteenZhang/game/Gun.png"
+            "file": "common/animation/denglujiemian/girl/girl_particle.png"
         },
         {
-            "file": "Games/ThirteenZhang/game/Common.png"
-        },
-        {
-            "file": "Games/ThirteenZhang/game/Bullet.png"
-        },
-        {
-            "file": "Games/ThirteenZhang/game/card/cards.png"
+            "file": "common/animation/denglujiemian/girl/girl.png"
         },
         {
             "file": "Games/BJL/game/BJLStudio/Layergame/cards.png"
         },
         {
-            "file": "Games/goldenToad/Scene/cards.png"
+            "file": "Games/goldenToad/fishAnimation/bigFishAnimation0.png"
+        },
+        {
+            "file": "Games/goldenToad/fishAnimation/bigFishAnimation1.png"
+        },
+        {
+            "file": "Games/goldenToad/particle/yanhua.png"
+        },
+        {
+            "file": "Games/goldenToad/particle/xuehua.png"
+        },
+        {
+            "file": "Games/goldenToad/particle/snow.png"
+        },
+        {
+            "file": "Games/goldenToad/particle/shark.png"
+        },
+        {
+            "file": "Games/goldenToad/particle/qipao.png"
+        },
+        {
+            "file": "Games/goldenToad/particle/meirenyu.png"
+        },
+        {
+            "file": "Games/goldenToad/particle/jinlong.png"
+        },
+        {
+            "file": "Games/goldenToad/particle/ding.png"
+        },
+        {
+            "file": "Games/goldenToad/particle/Diamond.png"
+        },
+        {
+            "file": "Games/goldenToad/particle/dazhongyu.png"
+        },
+        {
+            "file": "Games/goldenToad/particle/dasanyuan.png"
+        },
+        {
+            "file": "Games/goldenToad/particle/chijiangquan.png"
+        },
+        {
+            "file": "Games/goldenToad/particle/bomb.png"
+        },
+        {
+            "file": "Games/goldenToad/particle/bigwin.png"
         },
         {
             "file": "Games/stud/poker/cards.png"
         },
         {
+            "file": "Games/ThirteenZhang/game/Gun.png"
+        },
+        {
+            "file": "Games/ThirteenZhang/game/Bullet.png"
+        },
+        {
+            "file": "Games/ThirteenZhang/game/Common.png"
+        },
+        {
+            "file": "Games/ThirteenZhang/game/card/cards.png"
+        },
+        {
             "file": "platform/notice/Speaker.png"
-        }
-    ],
-    "InculdedDir": [
-        {
-            "dir": "test/girl"
         },
         {
-            "dir": "common/animation/denglujiemian/girl"
-        },
-        {
-            "dir": "common/animation/hundred_cow"
+            "file": "platform/animation/BirdAnimation0.png"
         }
     ],
+    "InculdedDir": [],
     "InculdedFile": [
         {
             "file": "platform/topFrame.png"
+        },
+        {
+            "file": "common/animation/denglujiemian/girl/girl.png"
+        },
+        {
+            "file": "common/animation/hundred_cow/hundred_cow.png"
         }
     ]
 }

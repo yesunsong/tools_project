@@ -31,8 +31,11 @@ public class MyTask extends Task {
 				if (!tmp.endsWith(".png")) {
 					continue;
 				}
+				String foldername=tmp.substring(0, tmp.indexOf("."));
 				getProject().setUserProperty("folder_path", fs.getDir().getPath());
-				getProject().setUserProperty("filename", tmp.substring(0, tmp.indexOf(".")));
+				getProject().setUserProperty("filename", foldername);
+				getProject().setUserProperty("plist_name", foldername);
+				getProject().setUserProperty("pvr_name", foldername);
 				getProject().executeTarget("single");
 			}
 		}

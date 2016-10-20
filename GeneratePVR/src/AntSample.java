@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import org.apache.commons.lang.SystemUtils;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.DefaultLogger;
 import org.apache.tools.ant.Project;
@@ -138,6 +137,62 @@ public class AntSample {
 		// System.out.println("默认Target：" + p.getDefaultTarget());
 		p.setUserProperty("TexturePacker_Path", TexturePacker_Path);
 		p.setUserProperty("folder_path", Resources_Path);
+		//
+		// 先过滤只生成pvr.ccz,不生成plist的文件
+		for (int i = 0; i < ExcludedFiles.size(); i++) {
+			String filepath = ExcludedFiles.get(i);
+			File file = new File(Resources_Path + File.separator + filepath);
+			String filename = file.getName().substring(0, file.getName().indexOf("."));
+			// p.setUserProperty("PixelFormat", RGBA4444);
+			// p.setUserProperty("DitherMode", Dither_FS_ALPHA);
+			p.setUserProperty("folder_path", file.getParentFile().getPath());
+			p.setUserProperty("filename", filename);
+			p.setUserProperty("plist_name", filename + "_tmp");
+			p.setUserProperty("pvr_name", filename);
+
+			// 文件是否在包含文件里
+			// String relativePath = (filepath + ".png");
+			boolean isIn = ArrayUtils.getInstance().removeWhenOccur(IncludedFiles, filepath);
+			if (isIn) {
+				p.setUserProperty("PixelFormat", RGBA8888);
+				p.setUserProperty("DitherMode", Dither_NONE);
+				p.setUserProperty("Use_alpha", "--premultiply-alpha");
+			} else {
+				p.setUserProperty("PixelFormat", RGBA4444);
+				p.setUserProperty("DitherMode", Dither_FS_ALPHA);
+				p.setUserProperty("Use_alpha", "");
+			}
+
+			// 1.备份文件:xxx.plist ==> xxx_tmp
+			p.executeTarget("rename_file");
+			// 2.生成 xxx.pvr.ccz和xxx.plist
+			p.executeTarget(single_target);
+			// 3.删除xxx.png
+			// String parent = file.getParent();
+			p.setUserProperty("delete_filename", file.getParent() + File.separator + filename + ".png");
+			p.executeTarget("delete_file");
+		}
+		// 不可放在同一逻辑执行的原因是 tp生成pvr.ccZ和plist有段时间
+		for (int i = 0; i < ExcludedFiles.size(); i++) {
+			String filepath = ExcludedFiles.get(i);
+			File file0 = new File(Resources_Path + File.separator + filepath);
+			String filename = file0.getName().substring(0, file0.getName().indexOf("."));
+			// p.setUserProperty("PixelFormat", RGBA4444);
+			// p.setUserProperty("DitherMode", Dither_FS_ALPHA);
+			p.setUserProperty("folder_path", file0.getParentFile().getPath());
+			p.setUserProperty("filename", filename);
+			p.setUserProperty("plist_name", filename + "_tmp");
+			p.setUserProperty("pvr_name", filename);
+
+			// 4.删除 xxx_tmp.plist文件
+			p.setUserProperty("delete_filename", file0.getParent() + File.separator + filename + "_tmp.plist");
+			p.executeTarget("delete_file");
+			// 5.还原备份文件:xxx_tmp => xxx.plist
+			p.executeTarget("recovery_file");
+			ExcludedFiles.remove(i);
+			i--;
+		}
+		//
 		File file = new File(Resources_Path);
 		check(file);
 	}
@@ -215,19 +270,27 @@ public class AntSample {
 	private static void single_target(Project p, String folderPath, String foldername) {
 		System.out.println("single:" + folderPath + "\\" + foldername);
 		// 文件是否在包含文件里
-		String relativePath = (foldername + ".png");
+		String relativePath = (folderPath.substring(folderPath.indexOf(Resources_Path) + Resources_Path.length() + 1, folderPath.length())
+				+ File.separator + foldername + ".png");
+		if (relativePath.equals("common\\animation\\hundred_cow\\hundred_cow.png")) {
+			System.out.println("");
+		}
 		boolean isIn = ArrayUtils.getInstance().removeWhenOccur(IncludedFiles, relativePath);
 
 		if (isIn) {
 			p.setUserProperty("PixelFormat", RGBA8888);
 			p.setUserProperty("DitherMode", Dither_NONE);
+			p.setUserProperty("Use_alpha", "--premultiply-alpha");
 		} else {
 			p.setUserProperty("PixelFormat", RGBA4444);
 			p.setUserProperty("DitherMode", Dither_FS_ALPHA);
+			p.setUserProperty("Use_alpha", "");
 		}
 
 		p.setUserProperty("folder_path", folderPath);
 		p.setUserProperty("filename", foldername);
+		p.setUserProperty("plist_name", foldername);
+		p.setUserProperty("pvr_name", foldername);
 		p.executeTarget(single_target);
 	}
 
@@ -235,20 +298,61 @@ public class AntSample {
 	private static void directory_target(Project p, String dirPath) {
 		System.out.println("directory:" + dirPath);
 		String relativePath = dirPath.substring(dirPath.indexOf(Resources_Path) + Resources_Path.length() + 1, dirPath.length());
-
+		// 目录是否在 包含目录里，不在的话，是否有 包含文件
 		boolean isIn = ArrayUtils.getInstance().removeWhenOccur(IncludedDirs, relativePath);
-
 		if (!isIn) {
-			p.setUserProperty("PixelFormat", RGBA4444);
-			p.setUserProperty("DitherMode", Dither_FS_ALPHA);
-		} else {
-			p.setUserProperty("PixelFormat", RGBA8888);
-			p.setUserProperty("DitherMode", Dither_NONE);
+			File dir = new File(dirPath);
+			if (dir.isDirectory()) {
+				// File[] files = dir.listFiles(new FileFilter() {
+				//
+				// @Override
+				// public boolean accept(File pathname) {
+				// String tmp = pathname.getName();
+				// return
+				// !ArrayUtils.getInstance().removeWhenOccur(IncludedFiles,
+				// tmp);
+				// }
+				// });
+				// isIn=files.length>0;
+				File[] files = dir.listFiles();
+				for (int i = 0; i < files.length; i++) {
+					String path = files[i].getPath();
+					if (path.endsWith(".png")) {
+						String folderPath = path.substring(path.indexOf(Resources_Path) + Resources_Path.length() + 1,
+								path.lastIndexOf(File.separator));
+						String filenameWithSuffix = path.substring(path.lastIndexOf(File.separator)+1, path.length());
+						String filenameWithoutSuffix = filenameWithSuffix.substring(0, filenameWithSuffix.indexOf("."));
+						if (ArrayUtils.getInstance().removeWhenOccur(IncludedFiles, folderPath + File.separator + filenameWithSuffix)) {
+							p.setUserProperty("PixelFormat", RGBA8888);
+							p.setUserProperty("DitherMode", Dither_NONE);
+							p.setUserProperty("Use_alpha", "--premultiply-alpha");
+						} else {
+							p.setUserProperty("PixelFormat", RGBA4444);
+							p.setUserProperty("DitherMode", Dither_FS_ALPHA);
+							p.setUserProperty("Use_alpha", "");
+						}
+						p.setUserProperty("folder_path",Resources_Path+File.separator+ folderPath);
+						p.setUserProperty("filename", filenameWithoutSuffix);
+						p.setUserProperty("plist_name", filenameWithoutSuffix);
+						p.setUserProperty("pvr_name", filenameWithoutSuffix);
+						p.executeTarget(single_target);
+					}
+				}
+			}
 		}
 
-		// 目录是否是 包含目录，不是的话，是否有 包含文件
-		p.setUserProperty("directory_path", dirPath);
-		p.executeTarget(directory_target);
+		// if (isIn) {
+		// p.setUserProperty("PixelFormat", RGBA8888);
+		// p.setUserProperty("DitherMode", Dither_NONE);
+		// p.setUserProperty("Use_alpha", "--premultiply-alpha");
+		// } else {
+		// p.setUserProperty("PixelFormat", RGBA4444);
+		// p.setUserProperty("DitherMode", Dither_FS_ALPHA);
+		// p.setUserProperty("Use_alpha", "");
+		// }
+		//
+		// p.setUserProperty("directory_path", dirPath);
+		// p.executeTarget(directory_target);
 	}
 
 	/**
