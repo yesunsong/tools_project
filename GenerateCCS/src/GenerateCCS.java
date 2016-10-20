@@ -12,8 +12,8 @@ public class GenerateCCS {
 	private String cocosstudioDir = "";
 
 	public GenerateCCS(String sourceDir, String outputDir) {
-		// °ÑF:\Myself\mobileClient\code\game\MixProject\ResourcesÏÂµÄÎÄ¼ş¿½±´µ½
-		// F:\Myself\mobileClient\code\game\MixProject\cocosstudioÄ¿Â¼ÏÂ
+		// æŠŠF:\Myself\mobileClient\code\game\MixProject\Resourcesä¸‹çš„æ–‡ä»¶æ‹·è´åˆ°
+		// F:\Myself\mobileClient\code\game\MixProject\cocosstudioç›®å½•ä¸‹
 
 		cocosstudioDir = sourceDir;
 
@@ -159,7 +159,7 @@ public class GenerateCCS {
 
 }
 
-// HuangGuangPro.ccsÎÄ¼ş½á¹¹ÈçÏÂ
+// HuangGuangPro.ccsæ–‡ä»¶ç»“æ„å¦‚ä¸‹
 // <Solution>
 // <PropertyGroup Name="HuangGuangPro" Version="3.10.0.0" Type="CocosStudio" />
 // <SolutionFolder>

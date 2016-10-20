@@ -5,28 +5,27 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Savepoint;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 
 /**
- * ¼ì²éCocos2dxÓÎÏ·ÖĞµÄÈßÓà×ÊÔ´
- * ÓÃ·¨£º
+ * æ£€æŸ¥Cocos2dxæ¸¸æˆä¸­çš„å†—ä½™èµ„æº
+ * ç”¨æ³•ï¼š
  * @author yesunsong
  *
  */
 public class RedundantResources {
-	/** ×ÊÔ´µÄÏà¶ÔÂ·¾¶-×ÊÔ´´óĞ¡ */
+	/** èµ„æºçš„ç›¸å¯¹è·¯å¾„-èµ„æºå¤§å° */
 	private HashMap<String, String> resourcesInGame;
-	/** ×ÊÔ´µÄÏà¶ÔÂ·¾¶-×ÊÔ´´óĞ¡ */
+	/** èµ„æºçš„ç›¸å¯¹è·¯å¾„-èµ„æºå¤§å° */
 	private HashMap<String, String> resourcesInLocal;
-	/**±¾µØ×ÊÔ´Ä¿Â¼*/
+	/**æœ¬åœ°èµ„æºç›®å½•*/
 	private String localDir= "F:\\mobileClient\\code\\game\\MixProject\\Resources";
-	/**µ÷ÊÔÄ£Ê½*/
+	/**è°ƒè¯•æ¨¡å¼*/
 	private String mode="Debug";
-	/**ÓÎÏ·×ÊÔ´ĞÅÏ¢ÎÄ¼şËùÔÚµÄÄ¿Â¼*/
+	/**æ¸¸æˆèµ„æºä¿¡æ¯æ–‡ä»¶æ‰€åœ¨çš„ç›®å½•*/
 	private String gameResInfoFile="texture_info.txt";
 	
 	public RedundantResources() {
@@ -40,9 +39,9 @@ public class RedundantResources {
 		checkRedundantRes();
 	}
 	
-	/**½âÎöÓÎÏ·ÖĞÊ¹ÓÃµ½µÄ×ÊÔ´*/
+	/**è§£ææ¸¸æˆä¸­ä½¿ç”¨åˆ°çš„èµ„æº*/
 	private void parseResourcesInGame() {
-		// ½öÊÊÓÃÓÚwin
+		// ä»…é€‚ç”¨äºwin
 		String pattern = "proj.win32/"+mode+".win32";
 		String pattern1 = "=>";
 		// string
@@ -70,7 +69,7 @@ public class RedundantResources {
 					}
 				}
 				reader.close();
-				// Ğ´ÈëÎÄ¼ş
+				// å†™å…¥æ–‡ä»¶
 //				save("test.txt",content);				
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -80,7 +79,7 @@ public class RedundantResources {
 		}
 	}
 
-	/**±£´æÎÄ¼ş*/
+	/**ä¿å­˜æ–‡ä»¶*/
 	private void save(String filename,String content) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(new File(filename)));
@@ -91,12 +90,12 @@ public class RedundantResources {
 		}
 	}
 
-	/**½âÎö±¾µØÄ¿Â¼µÄ×ÊÔ´*/
+	/**è§£ææœ¬åœ°ç›®å½•çš„èµ„æº*/
 	private void parseResourcesInLocal() {
 		readDirectory(localDir);
 	}
 
-	/**¼ì²éÈßÓà*/
+	/**æ£€æŸ¥å†—ä½™*/
 	private void checkRedundantRes() {
 		Iterator<Entry<String, String>> iterator=resourcesInLocal.entrySet().iterator();
 		Entry<String, String> entry;
@@ -105,15 +104,15 @@ public class RedundantResources {
 			entry=iterator.next();
 			if (!resourcesInGame.containsKey(entry.getKey())) {
 				content+=entry.getKey()+"\n";
-//				System.out.println("ÕÒµ½Î´Ê¹ÓÃµÄ×ÊÔ´£º"+entry.getKey());
+//				System.out.println("æ‰¾åˆ°æœªä½¿ç”¨çš„èµ„æºï¼š"+entry.getKey());
 			}else{
-//				System.out.println("ÕÒµ½Ê¹ÓÃµÄ×ÊÔ´£º"+entry.getKey());
+//				System.out.println("æ‰¾åˆ°ä½¿ç”¨çš„èµ„æºï¼š"+entry.getKey());
 			}
 		}
 		save("redundantRes.txt", content);
 	}
 
-	/** È¡Ö¸¶¨Ä¿Â¼ÏÂµÄ×ÊÔ´ */
+	/** å–æŒ‡å®šç›®å½•ä¸‹çš„èµ„æº */
 	private void readDirectory(String dir) {
 		File file = new File(dir);
 		if (file.exists() && file.isDirectory()) {
@@ -122,7 +121,7 @@ public class RedundantResources {
 		}
 	}
 
-	/** µİ¹é¶ÁÈ¡Ä¿Â¼ */
+	/** é€’å½’è¯»å–ç›®å½• */
 	private void readFiles(File[] files) {
 		File tmpFile;
 		for (int i = 0; i < files.length; i++) {

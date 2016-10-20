@@ -4,7 +4,7 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 /**
- * ±¸·İResource×ÊÔ´
+ * å¤‡ä»½Resourceèµ„æº
  * 
  * @author yesunsong
  *
@@ -21,9 +21,9 @@ public class main {
 		Statement stmt = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-			// Á¬½ÓÊı¾İ¿â
+			// è¿æ¥æ•°æ®åº“
 			c = DriverManager.getConnection("jdbc:sqlite:test.db");
-			// ´´½¨±í
+			// åˆ›å»ºè¡¨
 			stmt =  c.createStatement();
 			String sql = "CREATE TABLE "+table_name+" " +
 			"(ID INT PRIVATE KEY  NOT NULL,"+

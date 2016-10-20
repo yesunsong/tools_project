@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * ¼ì²épngÍ¼µÄÎ»Éî¶È£¨8£¬24,32£©
+ * æ£€æŸ¥pngå›¾çš„ä½æ·±åº¦ï¼ˆ8ï¼Œ24,32ï¼‰
  * @author yesunsong
  *
  */
@@ -109,11 +109,11 @@ public class main {
 		save("png8.txt", buffer.toString());
 	}
 
-	/** ±£´æÎÄ¼ş */
+	/** ä¿å­˜æ–‡ä»¶ */
 	private static void save(String filename, String content) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(new File(filename)));
-			// Ö¸¶¨±àÂë¸ñÊ½£¬²»Ö¸¶¨ÖĞÎÄ»á³öÏÖÂÒÂë
+			// æŒ‡å®šç¼–ç æ ¼å¼ï¼Œä¸æŒ‡å®šä¸­æ–‡ä¼šå‡ºç°ä¹±ç 
 			String characterSet = "UTF-8";
 			String str2 = new String(content.getBytes(characterSet), characterSet);
 			//
@@ -177,7 +177,7 @@ public class main {
 		return source.replace("\\", "\\\\");
 	}
 
-	/** ¼ì²épngµÄÎ»Éî¶È */
+	/** æ£€æŸ¥pngçš„ä½æ·±åº¦ */
 	private static int checkPngBitDepth(String path) {
 		try {
 			FileInputStream fis = new FileInputStream(path);
@@ -187,13 +187,13 @@ public class main {
 			while ((len = fis.read(buff)) != -1) {
 				bos.write(buff, 0, len);
 			}
-			// µÃµ½Í¼Æ¬µÄ×Ö½ÚÊı×é
+			// å¾—åˆ°å›¾ç‰‡çš„å­—èŠ‚æ•°ç»„
 			byte[] result = bos.toByteArray();
-			// ×Ö½ÚÊı×é×ª³ÉÊ®Áù½øÖÆ
+			// å­—èŠ‚æ•°ç»„è½¬æˆåå…­è¿›åˆ¶
 			String str = byte2HexStr(result);
 			// System.out.println("++++" + byte2HexStr(result));
 			// System.out.println(str);
-			// pngÎ»Éî¶È
+			// pngä½æ·±åº¦
 			int bitsPerPixel = result[24] & 0xff;
 			if ((result[25] & 0xff) == 2) {
 				bitsPerPixel *= 3;
@@ -208,7 +208,7 @@ public class main {
 		}
 	}
 
-	/** ÊµÏÖ×Ö½ÚÊı×éÏòÊ®Áù½øÖÆµÄ×ª»»·½·¨ */
+	/** å®ç°å­—èŠ‚æ•°ç»„å‘åå…­è¿›åˆ¶çš„è½¬æ¢æ–¹æ³• */
 	public static String byte2HexStr(byte[] b) {
 		String hs = "";
 		String stmp = "";
