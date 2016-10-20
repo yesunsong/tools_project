@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/LibJava"/>
+	<classpathentry kind="lib" path="libAnt/ant-antlr.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-apache-bcel.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-apache-bsf.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-apache-log4j.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-apache-oro.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-apache-regexp.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-apache-resolver.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-apache-xalan2.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-commons-logging.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-commons-net.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-contrib-1.0b3.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-jai.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-javamail.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-jdepend.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-jmf.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-jsch.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-junit.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-junit4.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-launcher.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-netrexx.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-swing.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant-testutil.jar"/>
+	<classpathentry kind="lib" path="libAnt/ant.jar"/>
+	<classpathentry kind="lib" path="libJson/commons-beanutils-1.8.0.jar"/>
+	<classpathentry kind="lib" path="libJson/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="libJson/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="libJson/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="libJson/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="libJson/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

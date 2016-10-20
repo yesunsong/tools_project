@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="generate PVR" default="check_dir" basedir=".">
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties" />
+	
+	<condition property="isMac">
+		<os family="mac" />
+	</condition>
+
+	<condition property="isWindows">
+		<os family="windows" />
+	</condition>
+
+	<property name="directory_path" value="" />
+
+	<target name="checkWindows" if="isWindows">
+		<var name="directory_path" value="F:/HuangGuan/mobileClient/code/game/MixProject/Resources" />
+		<antcall target="delete_png" />
+	</target>
+
+	<target name="checkMac" if="isMac">
+		<echo>mac</echo>
+		<var name="directory_path" value="" />
+		<antcall target="delete_png" />
+	</target>
+
+	<target name="check_dir">
+		<antcall target="checkWindows" />
+		<antcall target="checkMac" />
+	</target>
+
+	<target name="delete_png">
+		<echo>xxx:${directory_path}</echo>
+		<delete dir="${directory_path}">
+			<!-- 不删除的文件类型 -->
+			<exclude name="**/*.pvr" />
+			<exclude name="**/*.pvr.ccz" />
+			<exclude name="**/*.plist" />
+			<exclude name="**/*.fsh" />
+			<exclude name="**/*.vsh" />
+			<exclude name="**/*.json" />
+			<exclude name="**/*.mp3" />
+			<exclude name="**/*.mp4" />
+			<exclude name="**/*.wav" />
+			<exclude name="**/*.ExportJson" />
+			<exclude name="**/*.ttf" />
+			<exclude name="**/*.csb" />
+			<exclude name="**/*.xml" />
+			<exclude name="**/*.jpg" />	
+		</delete>
+	</target>
+
+</project>
