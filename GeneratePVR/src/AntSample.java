@@ -17,6 +17,8 @@ import cn.xm.yss.ArrayUtils;
 import cn.xm.yss.FileUtils;
 import cn.xm.yss.StringUtils;
 
+import cn.xm.yss.JavaMacro;
+
 public class AntSample {
 	private static final String RGBA8888 = "RGBA8888";
 	private static final String RGBA4444 = "RGBA4444";
@@ -69,7 +71,7 @@ public class AntSample {
 		System.out.println("-----config path:" + config_path);
 		System.out.println("-----xml path:" + xml_path);
 
-		String JsonContext = new Util().ReadFile(config_path);
+		String JsonContext = FileUtils.getInstance().ReadFile(config_path);
 		JSONObject jsonObject = JSONObject.fromObject(JsonContext);
 
 		ExcludedDirs = JSONArray2JavaArray(jsonObject, "ExculdedDir", "dir");
@@ -79,14 +81,14 @@ public class AntSample {
 
 		if (isWin()) {
 			Resources_Path = (String) jsonObject.get("Win_Resources_Path");
-			TexturePacker_Path = (String) jsonObject.get("Win_TexturePacker_Path");
+			TexturePacker_Path = (String) jsonObject.get("Win_TexturePacker_Path");	
 
-			Resources_Path = StringUtils.getInstance().replace(Resources_Path, '/', '\\');
-			TexturePacker_Path = StringUtils.getInstance().replace(TexturePacker_Path, '/', '\\');
-			StringUtils.getInstance().replace(ExcludedDirs, '/', '\\');
-			StringUtils.getInstance().replace(ExcludedFiles, '/', '\\');
-			StringUtils.getInstance().replace(IncludedDirs, '/', '\\');
-			StringUtils.getInstance().replace(IncludedFiles, '/', '\\');
+			Resources_Path = StringUtils.getInstance().replace(Resources_Path, JavaMacro.SLASH, JavaMacro.BACKSLASH);
+			TexturePacker_Path = StringUtils.getInstance().replace(TexturePacker_Path, JavaMacro.SLASH, JavaMacro.BACKSLASH);
+			StringUtils.getInstance().replace(ExcludedDirs, JavaMacro.SLASH, JavaMacro.BACKSLASH);
+			StringUtils.getInstance().replace(ExcludedFiles, JavaMacro.SLASH, JavaMacro.BACKSLASH);
+			StringUtils.getInstance().replace(IncludedDirs, JavaMacro.SLASH, JavaMacro.BACKSLASH);
+			StringUtils.getInstance().replace(IncludedFiles, JavaMacro.SLASH, JavaMacro.BACKSLASH);
 		} else if (isMac()) {
 			Resources_Path = (String) jsonObject.get("Mac_Resources_Path");
 			TexturePacker_Path = (String) jsonObject.get("Mac_TexturePacker_Path");
