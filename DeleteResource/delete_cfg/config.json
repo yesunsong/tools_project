@@ -1,0 +1,77 @@
+{
+ 	"Mac_Resources_Path": "/Users/Edward/Documents/hgGame/MobileClient/code/game/MixProject/Resources",
+    "Win_Resources_Path": "E:/Windows/HuangGuan/mobileClient/code/game/MixProject/Resources",
+    
+	"//":"UI版本",
+	"//":"UI版本号:v1 =; v2 = 正常; v3 = 新春版; v88 = 天天版; v99 = 腾讯版; v100 = 特殊版本",
+    "curVer": "v99",
+    
+    "common": [
+    	{"dir":"config" },
+    	{"dir":"csb" }
+    ],
+    
+    "v2": [
+    	{"dir":"button" },
+    	{"dir":"common" },
+    	{"dir":"Games" },
+    	{"dir":"music" },
+    	{"dir":"platform" },
+    	{"dir":"test" }
+    ],
+    
+    "v3": [
+        {"dir":"button" },
+    	{"dir":"common" },
+    	{"dir":"Games" },
+    	{"dir":"music" },
+    	{"dir":"platform" },
+    	{"dir":"test" },
+    	{"dir":"v3" }    	
+    ],
+    
+    "v88": [
+        {"dir":"v88" },
+    	{"dir":"Games/goldenToad" } ,
+		{"dir":"music/btnEffect"},
+		{"dir":"music/NN"},
+		{"dir":"music/Stud"},
+		{"dir":"music/ThirteenZhang"},
+		{"dir":"music/ThirteenZhang_v99"},
+		{"file":"music/goldFall.mp3"},
+		{"file":"music/leave.mp3"},
+		{"file":"music/lose.mp3"},
+		{"file":"music/platformBackGround.mp3"},
+		{"file":"music/welcome.mp3"},
+		{"file":"music/win.mp3"}		
+	],
+    
+    "v99": [
+        {"dir":"v99" },
+        {"dir":"platform/fonts" },
+        {"dir":"platform/notice" },
+        {"dir":"common/animation/goldFall"},
+        {"dir":"Games/goldenToad/ExchangeScoreUi" },
+        {"dir":"Games/goldenToad/fishAnimation" },
+        {"dir":"Games/goldenToad/number" },
+        {"dir":"Games/goldenToad/particle" },
+        {"dir":"Games/goldenToad/Scene" },
+        {"dir":"Games/goldenToad/sounds" },
+        {"dir":"Games/goldenToad/UserBoard" },
+        {"dir":"Games/ThirteenZhang/sound"},
+        {"dir":"Games/ThirteenZhang/game/common"},
+        {"dir":"Games/stud" },		
+		{"dir":"music/btnEffect"},
+		{"dir":"music/NewYearActivity"},
+		{"dir":"music/NN"},
+		{"dir":"music/Stud"},
+		{"dir":"music/ThirteenZhang"},
+		{"dir":"music/ThirteenZhang_v99"},
+		{"file":"music/goldFall.mp3"},
+		{"file":"music/leave.mp3"},
+		{"file":"music/lose.mp3"},
+		{"file":"music/platformBackGround.mp3"},
+		{"file":"music/welcome.mp3"},
+		{"file":"music/win.mp3"}	
+    ]
+}
